@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Library Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; }
+        .sidebar {
+            width: 220px;
+            background: #2c3e50;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+        .sidebar a {
+            color: #fff;
+            padding: 15px 25px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+        .sidebar a:hover {
+            background: #34495e;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 30px;
+        }
+        .dashboard-cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 24px;
+            flex: 1 1 220px;
+            min-width: 220px;
+            text-align: center;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+        .card p {
+            font-size: 2em;
+            margin: 0;
+            color: #2980b9;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        .section h4 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: left;
+        }
+        th {
+            background: #ecf0f1;
+        }
+        @media (max-width: 700px) {
+            .sidebar { width: 100px; }
+            .main { margin-left: 100px; padding: 15px; }
+            .dashboard-cards { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>E-Library</h2>
+        <a href="#">Dashboard</a>
+        <a href="#">Books</a>
+        <a href="#">Users</a>
+        <a href="#">Borrowed</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+    <div class="main">
+        <h1>Admin Dashboard</h1>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Total Books</h3>
+                <p>1,250</p>
+            </div>
+            <div class="card">
+                <h3>Active Users</h3>
+                <p>320</p>
+            </div>
+            <div class="card">
+                <h3>Books Borrowed</h3>
+                <p>87</p>
+            </div>
+            <div class="card">
+                <h3>Overdue Returns</h3>
+                <p>5</p>
+            </div>
+        </div>
+        <div class="section">
+            <h4>Recent Borrowed Books</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>User</th>
+                        <th>Date Borrowed</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Introduction to Algorithms</td>
+                        <td>Jane Doe</td>
+                        <td>2024-06-01</td>
+                        <td>2024-06-15</td>
+                    </tr>
+                    <tr>
+                        <td>Clean Code</td>
+                        <td>John Smith</td>
+                        <td>2024-06-03</td>
+                        <td>2024-06-17</td>
+                    </tr>
+                    <tr>
+                        <td>Python Crash Course</td>
+                        <td>Mary Lee</td>
+                        <td>2024-06-04</td>
+                        <td>2024-06-18</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

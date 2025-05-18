@@ -25,7 +25,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            background-image: var(--bg-image, none);
+            background: inherit;
             background-size: cover;
             background-position: center;
             filter: blur(8px) brightness(0.8);
@@ -87,10 +87,16 @@
     let current = 0;
 
     function changeBackground() {
-        // Set the blurred background for the pseudo-element
+        document.body.style.backgroundImage = backgrounds[current];
         document.body.style.setProperty('--bg-image', backgrounds[current]);
-        // Optionally set the main background (not blurred) if you want
-        // document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        // For the pseudo-element
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
         current = (current + 1) % backgrounds.length;
     }
 
@@ -98,12 +104,25 @@
         changeBackground();
         setInterval(changeBackground, 4000); // Change every 4 seconds
     };
+
+    function validateLogin(event) {
+        event.preventDefault(); // Prevent form submission
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === 'admin' && password === 'Password123') {
+            alert('Login successful!');
+            window.location.href = 'landing.html'; // Redirect to dashboard
+        } else {
+            alert('Invalid credentials. Please try again.');
+        }
+    }
     </script>
 </head>
 <body>
     <div class="login-container">
         <h2>Admin Login</h2>
-        <form action="db.php" method="POST">
+        <form onsubmit="validateLogin(event)">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
