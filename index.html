@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +11,25 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: inherit;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.8);
+            transition: background-image 1s ease-in-out;
         }
         .login-container {
             background: #fff;
@@ -20,6 +37,8 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 300px;
+            position: relative;
+            z-index: 1;
         }
         .login-container h2 {
             margin-bottom: 20px;
@@ -59,18 +78,45 @@
         }
     </style>
     <script>
-        function validateLogin(event) {
-            event.preventDefault(); // Prevent form submission
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    // Background slideshow images
+    const backgrounds = [
+        'url("C:/Users/prisof/Downloads/laptop-computer-book-workplace-library-room.jpg")',
+        'url("C:/Users/prisof/Downloads/book-library-with-open-textbook (1).jpg")',
+        'url("C:/Users/prisof/Downloads/book-library-with-open-textbook.jpg")'
+    ];
+    let current = 0;
 
-            if (username === 'admin' && password === 'Password123') {
-                alert('Login successful!');
-                window.location.href = 'admin_dashboard.html'; // Redirect to dashboard
-            } else {
-                alert('Invalid credentials. Please try again.');
-            }
+    function changeBackground() {
+        document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        document.body.style.backgroundImage = backgrounds[current];
+        // For the pseudo-element
+        document.body.style.setProperty('--bg-image', backgrounds[current]);
+        current = (current + 1) % backgrounds.length;
+    }
+
+    window.onload = function() {
+        changeBackground();
+        setInterval(changeBackground, 4000); // Change every 4 seconds
+    };
+
+    function validateLogin(event) {
+        event.preventDefault(); // Prevent form submission
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === 'admin' && password === 'Password123') {
+            alert('Login successful!');
+            window.location.href = 'admin_dashboard.html'; // Redirect to dashboard
+        } else {
+            alert('Invalid credentials. Please try again.');
         }
+    }
     </script>
 </head>
 <body>
