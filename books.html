@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books - E-Library</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 220px;
+            background: #2d3e50;
+            color: #fff;
+            min-height: 100vh;
+            padding-top: 30px;
+            box-sizing: border-box;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.7em;
+            letter-spacing: 1px;
+        }
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 5px 0;
+            transition: background 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: #223042;
+            border-left: 4px solid #4a90e2;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 40px 30px;
+            width: 100%;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .main h1 {
+            margin-top: 0;
+            color: #2d3e50;
+        }
+        .books-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .books-table th, .books-table td {
+            padding: 15px 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .books-table th {
+            background: #4a90e2;
+            color: #fff;
+        }
+        .books-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .books-table tr:hover {
+            background: #e6f0fa;
+        }
+        .book-cover {
+            width: 50px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 700px) {
+            .sidebar {
+                width: 100px;
+                padding-top: 15px;
+            }
+            .sidebar h2 {
+                font-size: 1em;
+            }
+            .sidebar a {
+                padding: 10px 10px;
+                font-size: 0.95em;
+            }
+            .main {
+                margin-left: 100px;
+                padding: 20px 10px;
+            }
+            .books-table th, .books-table td {
+                padding: 10px 5px;
+                font-size: 0.95em;
+            }
+            .book-cover {
+                width: 35px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>E-Library</h2>
+        <a href="landing.html">Dashboard</a>
+        <a href="books.html" class="active">Books</a>
+        <a href="#">Users</a>
+        <a href="#">Borrowed</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+    <div class="main">
+        <h1>Books</h1>
+        <table class="books-table">
+            <thead>
+                <tr>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="https://covers.openlibrary.org/b/id/240726-S.jpg" alt="Introduction to Algorithms" class="book-cover"></td>
+                    <td>Introduction to Algorithms</td>
+                    <td>Thomas H. Cormen</td>
+                    <td>Computer Science</td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td><img src="https://covers.openlibrary.org/b/id/8228691-S.jpg" alt="To Kill a Mockingbird" class="book-cover"></td>
+                    <td>To Kill a Mockingbird</td>
+                    <td>Harper Lee</td>
+                    <td>Fiction</td>
+                    <td>Borrowed</td>
+                </tr>
+                <tr>
+                    <td><img src="https://covers.openlibrary.org/b/id/7222246-S.jpg" alt="1984" class="book-cover"></td>
+                    <td>1984</td>
+                    <td>George Orwell</td>
+                    <td>Dystopian</td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td><img src="https://covers.openlibrary.org/b/id/7222161-S.jpg" alt="The Great Gatsby" class="book-cover"></td>
+                    <td>The Great Gatsby</td>
+                    <td>F. Scott Fitzgerald</td>
+                    <td>Classic</td>
+                    <td>Available</td>
+                </tr>
+                <tr>
+                    <td><img src="https://covers.openlibrary.org/b/id/8091016-S.jpg" alt="Clean Code" class="book-cover"></td>
+                    <td>Clean Code</td>
+                    <td>Robert C. Martin</td>
+                    <td>Programming</td>
+                    <td>Borrowed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
