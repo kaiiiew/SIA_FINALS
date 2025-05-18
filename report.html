@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-Library Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reports - E-Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { margin: 0; font-family: Arial, sans-serif; background: #f4f6fb; }
         .sidebar {
@@ -103,140 +103,80 @@
 <body>
     <div class="sidebar">
         <h2>E-Library</h2>
-        <a href="#" class="active">Dashboard</a>
+        <a href="landing.html">Dashboard</a>
         <a href="books.html">Books</a>
         <a href="user.html">Users</a>
         <a href="borrowed.html">Borrowed</a>
-        <a href="report.html">Reports</a>
+        <a href="report.html" class="active">Reports</a>
         <a href="#">Settings</a>
         <a href="#">Logout</a>
     </div>
     <div class="main">
-        <h1>Admin Dashboard</h1>
+        <h1>Reports</h1>
         <div class="dashboard-cards">
             <div class="card">
                 <h3>Total Books</h3>
-                <p>1,250</p>
+                <p>50</p>
             </div>
             <div class="card">
-                <h3>Active Users</h3>
-                <p>320</p>
-            </div>
-            <div class="card">
-                <h3>Books Borrowed</h3>
+                <h3>Total Users</h3>
                 <p>8</p>
             </div>
             <div class="card">
-                <h3>Overdue Returns</h3>
-                <p>5</p>
+                <h3>Books Borrowed</h3>
+                <p>6</p>
+            </div>
+            <div class="card">
+                <h3>Overdue Books</h3>
+                <p>1</p>
             </div>
         </div>
         <div class="section">
-            <h4>Recent Borrowed Books</h4>
+            <h4>Overdue Books</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Book Title</th>
-                        <th>User</th>
-                        <th>Date Borrowed</th>
+                        <th>Title</th>
+                        <th>Borrower</th>
                         <th>Due Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Introduction to Algorithms</td>
+                        <td>To Kill a Mockingbird</td>
                         <td>Bini Maloi</td>
-                        <td>2024-06-01</td>
                         <td>2024-06-15</td>
+                        <td style="color:#e74c3c;font-weight:bold;">Overdue</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="section">
+            <h4>Most Borrowed Books</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Times Borrowed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>To Kill a Mockingbird</td>
+                        <td>12</td>
                     </tr>
                     <tr>
                         <td>Clean Code</td>
-                        <td>Bini Aiah</td>
-                        <td>2024-06-03</td>
-                        <td>2024-06-17</td>
+                        <td>10</td>
                     </tr>
                     <tr>
-                        <td>Python Crash Course</td>
-                        <td>Bini Gwen</td>
-                        <td>2024-06-04</td>
-                        <td>2024-06-18</td>
+                        <td>1984</td>
+                        <td>9</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="section">
-            <h4>Analytics: Active Users (Last 6 Months)</h4>
-            <canvas id="activeUsersChart" width="600" height="260"></canvas>
-        </div>
-        <div class="section">
-            <h4>Analytics Report</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Most Borrowed Book</td>
-                        <td>To Kill a Mockingbird</td>
-                    </tr>
-                    <tr>
-                        <td>Most Active User</td>
-                        <td>Bini Maloi</td>
-                    </tr>
-                    <tr>
-                        <td>Average Borrow Duration</td>
-                        <td>13 days</td>
-                    </tr>
-                    <tr>
-                        <td>Books Borrowed This Month</td>
-                        <td>42</td>
-                    </tr>
-                    <tr>
-                        <td>Overdue Rate</td>
-                        <td>6%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            // Example data for active users per month
-            const ctx = document.getElementById('activeUsersChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'Active Users',
-                        data: [120, 150, 180, 210, 260, 320],
-                        borderColor: '#4a90e2',
-                        backgroundColor: 'rgba(74,144,226,0.08)',
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 5,
-                        pointBackgroundColor: '#2980b9'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { color: '#2d3e50' }
-                        },
-                        x: {
-                            ticks: { color: '#2d3e50' }
-                        }
-                    }
-                }
-            });
-        </script>
     </div>
 </body>
 </html>
