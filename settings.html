@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings - E-Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6fb; }
+        .sidebar {
+            width: 220px;
+            background: #2d3e50;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+        }
+        .sidebar a {
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s, border-left 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: #223042;
+            border-left: 4px solid #4a90e2;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 30px;
+        }
+        .section {
+            margin-top: 40px;
+        }
+        .section h4 {
+            margin-bottom: 15px;
+            color: #2d3e50;
+        }
+        .settings-form {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 30px;
+            max-width: 500px;
+        }
+        .settings-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3e50;
+            font-weight: bold;
+        }
+        .settings-form input[type="text"],
+        .settings-form input[type="email"],
+        .settings-form input[type="password"],
+        .settings-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #dbe2ef;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .settings-form button {
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .settings-form button:hover {
+            background: #357ab8;
+        }
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .avatar-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+            background: #e6eaf3;
+        }
+        .avatar-upload label {
+            display: inline-block;
+            background: #4a90e2;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+        .avatar-upload input[type="file"] {
+            display: none;
+        }
+        .general-info {
+            margin-bottom: 25px;
+        }
+        .general-info p {
+            margin: 6px 0;
+            color: #2d3e50;
+        }
+        @media (max-width: 700px) {
+            .sidebar { width: 100px; }
+            .main { margin-left: 100px; padding: 15px; }
+            .settings-form { padding: 15px; }
+            .avatar-img { width: 55px; height: 55px; }
+        }
+    </style>
+    <script>
+        function previewAvatar(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('avatarPreview').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Handle Account Settings Form
+        function handleAccountSettings(event) {
+            event.preventDefault();
+            const name = document.getElementById('adminName').value;
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            // Update general info section
+            document.getElementById('generalName').textContent = name;
+            document.getElementById('generalEmail').textContent = email;
+            // Optionally, clear password field after update
+            document.getElementById('adminPassword').value = '';
+            alert('Account settings updated!');
+        }
+
+        // Handle Library Preferences Form
+        function handleLibraryPreferences(event) {
+            event.preventDefault();
+            const theme = document.getElementById('theme').value;
+            const maxBorrow = document.getElementById('maxBorrow').value;
+            alert('Preferences updated!\nTheme: ' + theme + '\nMax Books Per User: ' + maxBorrow);
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>E-Library</h2>
+        <a href="landing.html">Dashboard</a>
+        <a href="books.html">Books</a>
+        <a href="user.html">Users</a>
+        <a href="borrowed.html">Borrowed</a>
+        <a href="report.html">Reports</a>
+        <a href="settings.html" class="active">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+    <div class="main">
+        <h1>Settings</h1>
+        <div class="section">
+            <h4>Account Profile</h4>
+            <div class="avatar-section">
+                <img id="avatarPreview" class="avatar-img" src="images/admin-avatar.png" alt="Admin Avatar">
+                <div class="avatar-upload">
+                    <label for="avatarInput">Change Avatar</label>
+                    <input type="file" id="avatarInput" accept="image/*" onchange="previewAvatar(event)">
+                </div>
+            </div>
+            <div class="general-info">
+                <p><strong>Name:</strong> <span id="generalName">Admin</span></p>
+                <p><strong>Email:</strong> <span id="generalEmail">admin@email.com</span></p>
+                <p><strong>Role:</strong> Moderator</p>
+                <p><strong>Member Since:</strong> 2023-01-01</p>
+            </div>
+            <form class="settings-form" onsubmit="handleAccountSettings(event)">
+                <label for="adminName">Edit Name</label>
+                <input type="text" id="adminName" name="adminName" value="Admin" required>
+
+                <label for="adminEmail">Edit Email</label>
+                <input type="email" id="adminEmail" name="adminEmail" value="admin@email.com" required>
+
+                <label for="adminPassword">Change Password</label>
+                <input type="password" id="adminPassword" name="adminPassword" placeholder="Enter new password">
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+        <div class="section">
+            <h4>Library Preferences</h4>
+            <form class="settings-form" onsubmit="handleLibraryPreferences(event)">
+                <label for="theme">Theme</label>
+                <select id="theme" name="theme">
+                    <option value="light" selected>Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+
+                <label for="maxBorrow">Max Books Per User</label>
+                <input type="text" id="maxBorrow" name="maxBorrow" value="5">
+
+                <button type="submit">Update Preferences</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
