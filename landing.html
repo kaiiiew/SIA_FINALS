@@ -5,10 +5,10 @@
     <title>E-Library Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; }
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6fb; }
         .sidebar {
             width: 220px;
-            background: #2c3e50;
+            background: #2d3e50;
             color: #fff;
             height: 100vh;
             position: fixed;
@@ -24,13 +24,16 @@
         }
         .sidebar a {
             color: #fff;
-            padding: 15px 25px;
+            padding: 15px 30px;
             text-decoration: none;
             display: block;
-            transition: background 0.2s;
+            transition: background 0.2s, border-left 0.2s;
+            border-left: 4px solid transparent;
         }
+        .sidebar a.active,
         .sidebar a:hover {
-            background: #34495e;
+            background: #223042;
+            border-left: 4px solid #4a90e2;
         }
         .main {
             margin-left: 220px;
@@ -53,7 +56,7 @@
         .card h3 {
             margin: 0 0 10px 0;
             font-size: 1.2em;
-            color: #2c3e50;
+            color: #2d3e50;
         }
         .card p {
             font-size: 2em;
@@ -65,7 +68,7 @@
         }
         .section h4 {
             margin-bottom: 15px;
-            color: #2c3e50;
+            color: #2d3e50;
         }
         table {
             width: 100%;
@@ -80,22 +83,30 @@
             text-align: left;
         }
         th {
-            background: #ecf0f1;
+            background: #4a90e2;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        tr:hover {
+            background: #e6f0fa;
         }
         @media (max-width: 700px) {
             .sidebar { width: 100px; }
             .main { margin-left: 100px; padding: 15px; }
             .dashboard-cards { flex-direction: column; gap: 15px; }
+            .sidebar a { padding: 10px 10px; font-size: 0.95em; }
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>E-Library</h2>
-        <a href="#">Dashboard</a>
+        <a href="#" class="active">Dashboard</a>
         <a href="books.html">Books</a>
         <a href="user.html">Users</a>
-        <a href="#">Borrowed</a>
+        <a href="borrowed.html">Borrowed</a>
         <a href="#">Reports</a>
         <a href="#">Settings</a>
         <a href="#">Logout</a>
@@ -113,7 +124,7 @@
             </div>
             <div class="card">
                 <h3>Books Borrowed</h3>
-                <p>87</p>
+                <p>8</p>
             </div>
             <div class="card">
                 <h3>Overdue Returns</h3>
