@@ -6,143 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f4f6fb;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
             display: flex;
         }
         .sidebar {
             width: 220px;
             background: #2d3e50;
             color: #fff;
-            min-height: 100vh;
-            padding-top: 30px;
-            box-sizing: border-box;
+            height: 100vh;
             position: fixed;
-            left: 0;
-            top: 0;
+            top: 0; left: 0;
+            display: flex;
+            flex-direction: column;
         }
         .sidebar h2 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.7em;
-            letter-spacing: 1px;
+            margin: 20px 0;
+            font-size: 1.5em;
+            letter-spacing: 2px;
         }
         .sidebar a {
-            display: block;
             color: #fff;
-            text-decoration: none;
             padding: 15px 30px;
-            margin: 5px 0;
-            transition: background 0.2s;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s, border-left 0.2s;
             border-left: 4px solid transparent;
         }
         .sidebar a.active,
         .sidebar a:hover {
             background: #223042;
-            border-left: 4px solid #f5a623;
+            border-left: 4px solid #4a90e2;
         }
         .main {
             margin-left: 220px;
-            padding: 40px 30px;
+            padding: 30px;
             width: 100%;
             min-height: 100vh;
             box-sizing: border-box;
         }
-        .main h1 {
-            margin-top: 0;
+        .section {
+            margin-top: 40px;
+        }
+        .section h4 {
+            margin-bottom: 15px;
             color: #2d3e50;
         }
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            margin-top: 30px;
+        }
+        .users-table th, .users-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .users-table th {
+            background: #4a90e2;
+            color: #fff;
+        }
+        .users-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .users-table tr:hover {
+            background: #e6f0fa;
         }
         .user-avatar {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            object-fit: cover;
             background: #2a5298;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 2.5rem;
-            margin-right: 1.5rem;
-        }
-        .user-details h2 {
-            margin: 0 0 0.3rem 0;
-            font-size: 1.5rem;
-        }
-        .user-details p {
-            margin: 0;
-            color: #666;
-        }
-        .books-section {
-            margin-top: 2rem;
-        }
-        .books-section h3 {
-            margin-bottom: 1rem;
-            color: #2a5298;
-        }
-        .books-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-        .book-card {
-            background: #f4f6fb;
-            border-radius: 12px;
-            box-shadow: 0 1px 6px rgba(42,82,152,0.06);
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            transition: box-shadow 0.2s;
-        }
-        .book-card:hover {
-            box-shadow: 0 4px 16px rgba(42,82,152,0.12);
-        }
-        .book-title {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1e3c72;
-        }
-        .book-author {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-        .book-status {
-            font-size: 0.9rem;
-            color: #f5a623;
-            margin-top: auto;
+            display: block;
         }
         @media (max-width: 700px) {
-            .sidebar {
-                width: 100px;
-                padding-top: 15px;
-            }
-            .sidebar h2 {
-                font-size: 1em;
-            }
-            .sidebar a {
-                padding: 10px 10px;
-                font-size: 0.95em;
-            }
-            .main {
-                margin-left: 100px;
-                padding: 20px 10px;
-            }
-            .user-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .user-avatar {
-                margin-bottom: 1rem;
-                margin-right: 0;
-            }
+            .sidebar { width: 100px; }
+            .main { margin-left: 100px; padding: 15px; }
+            .sidebar a { padding: 10px 10px; font-size: 0.95em; }
+            .users-table th, .users-table td { padding: 10px 5px; font-size: 0.95em; }
+            .user-avatar { width: 35px; height: 35px; }
         }
     </style>
 </head>
@@ -151,41 +101,66 @@
         <h2>E-Library</h2>
         <a href="landing.html">Dashboard</a>
         <a href="books.html">Books</a>
-        <a href="user.html" class="active">User</a>
-        <a href="#">Borrowed</a>
+        <a href="user.html" class="active">Users</a>
+        <a href="borrowed.html">Borrowed</a>
         <a href="#">Reports</a>
         <a href="#">Settings</a>
         <a href="#">Logout</a>
     </div>
     <div class="main">
-        <h1>User Dashboard</h1>
-        <div class="user-info">
-            <div class="user-avatar">U</div>
-            <div class="user-details">
-                <h2>Username</h2>
-                <p>user@email.com</p>
-            </div>
-        </div>
-        <div class="books-section">
-            <h3>Your Books</h3>
-            <div class="books-list">
-                <div class="book-card">
-                    <div class="book-title">The Great Gatsby</div>
-                    <div class="book-author">by F. Scott Fitzgerald</div>
-                    <div class="book-status">Borrowed - Due: 2024-07-10</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-title">1984</div>
-                    <div class="book-author">by George Orwell</div>
-                    <div class="book-status">Returned</div>
-                </div>
-                <div class="book-card">
-                    <div class="book-title">To Kill a Mockingbird</div>
-                    <div class="book-author">by Harper Lee</div>
-                    <div class="book-status">Borrowed - Due: 2024-07-15</div>
-                </div>
-                <!-- Add more book cards as needed -->
-            </div>
+        <h1>User List</h1>
+        <div class="section">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\maloi.jpg" alt="Bini Maloi"></td>
+                        <td>Bini Maloi</td>
+                        <td>Bini_maloi@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\aiah.jpg" alt="Bini Aiah"></td>
+                        <td>Bini Aiah</td>
+                        <td>Bini_aiah@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\gwen.jpg" alt="Bini Gwen"></td>
+                        <td>Bini Gwen</td>
+                        <td>Bini_gwen@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\jho.jpg" alt="Bini Jhoanna"></td>
+                        <td>Bini Jhoanna</td>
+                        <td>Bini_jhoanna@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\stacey.jpg" alt="Bini Stacey"></td>
+                        <td>Bini Stacey</td>
+                        <td>Bini_stacey@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\mihka.jpg" alt="Bini Mikha"></td>
+                        <td>Bini Mikha</td>
+                        <td>Bini_mihka@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\colet.jpg" alt="Bini Colet"></td>
+                        <td>Bini Colet</td>
+                        <td>Bini_colet@email.com</td>
+                    </tr>
+                    <tr>
+                        <td><img class="user-avatar" src="C:\Users\prisof\Downloads\attributes\sheena.jpg" alt="Bini Sheena"></td>
+                        <td>Bini Sheena</td>
+                        <td>Bini_sheena@email.com</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
