@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout - E-Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6fb; }
+        .main {
+            margin-left: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .logout-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .logout-btn, .cancel-btn {
+            border: none;
+            padding: 12px 32px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 15px 10px 0 10px;
+            transition: background 0.2s;
+        }
+        .logout-btn {
+            background: #4a90e2;
+            color: #fff;
+        }
+        .logout-btn:hover {
+            background: #357ab8;
+        }
+        .cancel-btn {
+            background: #e0e0e0;
+            color: #2d3e50;
+        }
+        .cancel-btn:hover {
+            background: #b0b0b0;
+        }
+    </style>
+    <script>
+    // Show alert as soon as the page loads
+
+    function confirmLogout(choice) {
+        if (choice === 'yes') {
+            // Show alert, then redirect
+            alert("You have been logged out. Redirecting to login...");
+            window.location.href = "index.html";
+        } else {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.location.href = document.referrer;
+            } else {
+                window.location.href = "landing.html";
+            }
+        }
+    }
+</script>
+<body>
+    <div class="main">
+        <div class="logout-card">
+            <h2>Are you sure you want to logout?</h2>
+            <div id="logout-message"></div>
+            <button class="logout-btn" onclick="confirmLogout('yes')">Yes</button>
+            <button class="cancel-btn" onclick="confirmLogout('no')">No</button>
+        </div>
+    </div>
+</body>
+</html>
