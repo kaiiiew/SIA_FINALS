@@ -50,49 +50,158 @@
         .section {
             margin-top: 40px;
         }
-        .section h4 {
-            margin-bottom: 15px;
-            color: #2d3e50;
-        }
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        .user-banner-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
             margin-top: 30px;
         }
-        .users-table th, .users-table td {
-            padding: 16px 18px;
-            border-bottom: 1px solid #f0f0f0;
-            text-align: left;
-            vertical-align: middle;
+        /* Striped backgrounds for each user */
+        .user-banner-1 {
+            background: repeating-linear-gradient(
+                135deg,
+                #ffe699,
+                #ffe699 20px,
+                #fff6cc 20px,
+                #fff6cc 40px
+            );
         }
-        .users-table th {
-            background: #4a90e2;
-            color: #fff;
+        .user-banner-2 {
+            background: repeating-linear-gradient(
+                135deg,
+                #d6f0f6,
+                #d6f0f6 20px,
+                #eaf7fa 20px,
+                #eaf7fa 40px
+            );
         }
-        .users-table tr:nth-child(even) {
-            background: #f7fafc;
+        .user-banner-3 {
+            background: repeating-linear-gradient(
+                135deg,
+                #ffd6b3,
+                #ffd6b3 20px,
+                #fff0e0 20px,
+                #fff0e0 40px
+            );
         }
-        .users-table tr:hover {
-            background: #e6f0fa;
+        .user-banner-4 {
+            background: repeating-linear-gradient(
+                135deg,
+                #b3d1f7,
+                #b3d1f7 20px,
+                #e0ecfa 20px,
+                #e0ecfa 40px
+            );
+        }
+        .user-banner-5 {
+            background: repeating-linear-gradient(
+                135deg,
+                #ffd6de,
+                #ffd6de 20px,
+                #ffe9ef 20px,
+                #ffe9ef 40px
+            );
+        }
+        .user-banner-6 {
+            background: repeating-linear-gradient(
+                135deg,
+                #ffb3a7,
+                #ffb3a7 20px,
+                #ffe0db 20px,
+                #ffe0db 40px
+            );
+        }
+        .user-banner-7 {
+            background: repeating-linear-gradient(
+                135deg,
+                #b3f7c2,
+                #b3f7c2 20px,
+                #e0faeb 20px,
+                #e0faeb 40px
+            );
+        }
+        .user-banner-8 {
+            background: repeating-linear-gradient(
+                135deg,
+                #e0c3fc,
+                #e0c3fc 20px,
+                #f3e6fa 20px,
+                #f3e6fa 40px
+            );
+        }
+        .user-banner {
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            width: 320px;
+            padding: 24px 20px 16px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .user-banner-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
         .user-avatar {
-            width: 50px;
-            height: 50px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             background: #2a5298;
-            display: block;
+            margin-bottom: 12px;
+            border: 4px solid #e6f0fa;
+        }
+        .user-banner-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2d3e50;
+            margin-bottom: 2px;
+        }
+        .user-banner-subtitle {
+            font-size: 0.98em;
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+        .user-banner-actions {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0 0 0;
+        }
+        .msg-btn {
+            background: #e6f0fa;
+            color: #4a90e2;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .user-banner-email {
+            margin-top: 10px;
+            font-size: 0.98em;
+            color: #000000;
+            word-break: break-all;
+        }
+        @media (max-width: 900px) {
+            .user-banner-list {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         @media (max-width: 700px) {
             .sidebar { width: 100px; }
             .main { margin-left: 100px; padding: 15px; }
             .sidebar a { padding: 10px 10px; font-size: 0.95em; }
-            .users-table th, .users-table td { padding: 10px 5px; font-size: 0.95em; }
-            .user-avatar { width: 35px; height: 35px; }
+            .user-banner { width: 95vw; min-width: 0; }
+            .user-avatar { width: 70px; height: 70px; }
         }
     </style>
 </head>
@@ -110,57 +219,96 @@
     <div class="main">
         <h1>User List</h1>
         <div class="section">
-            <table class="users-table">
-                <thead>
-                    <tr>
-                        <th>Avatar</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/maloi.jpg alt="Bini Maloi"></td>
-                        <td>Bini Maloi</td>
-                        <td>Bini_maloi@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/aiah.jpg alt="Bini Aiah"></td>
-                        <td>Bini Aiah</td>
-                        <td>Bini_aiah@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/gwen.jpg alt="Bini Gwen"></td>
-                        <td>Bini Gwen</td>
-                        <td>Bini_gwen@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/jho.jpg alt="Bini Jhoanna"></td>
-                        <td>Bini Jhoanna</td>
-                        <td>Bini_jhoanna@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/stacey.jpg alt="Bini Stacey"></td>
-                        <td>Bini Stacey</td>
-                        <td>Bini_stacey@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/mihka.jpg alt="Bini Mikha"></td>
-                        <td>Bini Mikha</td>
-                        <td>Bini_mihka@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/colet.jpg alt="Bini Colet"></td>
-                        <td>Bini Colet</td>
-                        <td>Bini_colet@email.com</td>
-                    </tr>
-                    <tr>
-                        <td><img class="user-avatar" src=attributes/sheena.jpg alt="Bini Sheena"></td>
-                        <td>Bini Sheena</td>
-                        <td>Bini_sheena@email.com</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="user-banner-list">
+                <div class="user-banner user-banner-1">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/maloi.jpg" alt="Bini Maloi">
+                        <div class="user-banner-title">Bini Maloi</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_maloi@email.com</div>
+                </div>
+                <div class="user-banner user-banner-2">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/aiah.jpg" alt="Bini Aiah">
+                        <div class="user-banner-title">Bini Aiah</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_aiah@email.com</div>
+                </div>
+                <div class="user-banner user-banner-3">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/gwen.jpg" alt="Bini Gwen">
+                        <div class="user-banner-title">Bini Gwen</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_gwen@email.com</div>
+                </div>
+                <div class="user-banner user-banner-4">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/jho.jpg" alt="Bini Jhoanna">
+                        <div class="user-banner-title">Bini Jhoanna</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_jhoanna@email.com</div>
+                </div>
+                <div class="user-banner user-banner-5">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/stacey.jpg" alt="Bini Stacey">
+                        <div class="user-banner-title">Bini Stacey</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_stacey@email.com</div>
+                </div>
+                <div class="user-banner user-banner-6">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/mihka.jpg" alt="Bini Mikha">
+                        <div class="user-banner-title">Bini Mikha</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_mihka@email.com</div>
+                </div>
+                <div class="user-banner user-banner-7">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/colet.jpg" alt="Bini Colet">
+                        <div class="user-banner-title">Bini Colet</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_colet@email.com</div>
+                </div>
+                <div class="user-banner user-banner-8">
+                    <div class="user-banner-header">
+                        <img class="user-avatar" src="attributes/sheena.jpg" alt="Bini Sheena">
+                        <div class="user-banner-title">Bini Sheena</div>
+                        <div class="user-banner-subtitle">E-Library User</div>
+                    </div>
+                    <div class="user-banner-actions">
+                        <button class="msg-btn">&#9993;</button>
+                    </div>
+                    <div class="user-banner-email">Bini_sheena@email.com</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
